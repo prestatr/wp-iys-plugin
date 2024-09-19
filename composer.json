@@ -1,0 +1,5 @@
+{
+    "require": {
+        "inarli/iys-php-client": "^1.0"
+    }
+}

@@ -1,0 +1,56 @@
+.productServiceViewButton{
+	font-family: "Poppins", Sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    
+	background-color: #69C8CD;
+    color: #FFFFFF;
+    padding: 13px 35px 13px 35px;
+    border-radius: 35px 35px 35px 35px;
+}
+
+.productServiceList{
+
+}
+.productService{
+	border-radius: 14px;
+    box-shadow: 0px 0px 20px 6px #EEEEEE;
+    padding: 30px 30px 30px 30px;
+}
+.productServiceHeading{
+	font-weight: bold;
+	font-size: 40px;
+	font-family: "Montserrat", Sans-serif;
+	color: #7186ff;
+}
+.productServiceDescription{
+	font-family: "Montserrat", Sans-serif;
+	font-size: 20px;
+	color: #7186ff;
+	font-weight: thin;
+}
+.productServiceDetails{
+	width: 100%;
+	float: left;
+	display: block;
+}
+.productServiceDetailsCPU{
+	width: 20%;
+	display: block;
+}
+.productServiceDetailsMemory{
+
+}
+.productServiceDetailsDisk{
+
+}
+.productServiceDetailsBandwidth{
+
+}
+.productServiceDetailsIP{
+
+}
+.productServiceButtonRow{
+
+}

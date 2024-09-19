@@ -1,0 +1,67 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "3163f0e2a54736bbb181e362763bdd74",
+    "packages": [
+        {
+            "name": "inarli/iys-php-client",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inarli/iys-php-client.git",
+                "reference": "6aaedd3b37979c6d7157dd17f98f02b79f0d1327"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inarli/iys-php-client/zipball/6aaedd3b37979c6d7157dd17f98f02b79f0d1327",
+                "reference": "6aaedd3b37979c6d7157dd17f98f02b79f0d1327",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "symfony/var-dumper": "^5.1"
+            },
+            "suggest": {
+                "giggsey/libphonenumber-for-php": "Telefon numaralarını İleti Yönetim sistemi'nin talep ettiği E164 biçiminde biçimlendirmenize yardımcı olur"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ilkay narli",
+                    "email": "ilkaynarli@gmail.com"
+                }
+            ],
+            "description": "İleti Yönetim Sistemi (iys.org.tr) Api Servisleri İçin Php Client Kütüphanesi",
+            "support": {
+                "issues": "https://github.com/inarli/iys-php-client/issues",
+                "source": "https://github.com/inarli/iys-php-client/tree/1.0.7"
+            },
+            "time": "2021-01-11T14:17:03+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}
