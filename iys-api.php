@@ -1,77 +1,49 @@
 <?php
 
-echo '{status:"success"}';
-exit;
-
 require_once 'vendor/autoload.php';
 
-$apiUri = 'https://api.sandbox.iys.org.tr';
-$iysBrandCode = 'YOUR_BRAND_CODE';
-$iysCode = 'YOUR_IYS_CODE';
+class Iys_api{
+    protected $iys;
 
-// test account
-$email = 'YOUR_MAIL';
-$password = 'YOUR_PASSWORD';
+    public function __construct(){
+        $apiUri = 'https://api.sandbox.iys.org.tr';
+        $iysBrandCode = '714697';
+        $iysCode = '693431';
+        
+        // test account
+        $email = '801eadce-8f51-46d0-bf44-316998040bff';        
+        $password = 'S44^L9uZgkm:!3..YKX92zc~<N!3ahZ1';
+        
+        $this->iys = new Iys\IysApi($apiUri, $iysCode, $iysBrandCode);
+        
+        // login to iys system
+        $login = $this->iys->authentication->loginWithOauth2($email, $password);
+        var_dump($login);exit;
+        if ($login instanceof \Iys\Auth\Response\Token) {
+            $this->iys->setToken($login->getAccessToken());
+            $this->iys->setRefreshToken($login->getRefreshToken());
+        }
+    }
 
-$iys = new Iys\IysApi($apiUri, $iysCode, $iysBrandCode);
+    public function checkEmail( $email ){
+        // create a consent
+        
+        $email = 'presta.tr@gmail.com';
+        $date = date('Y-m-d H:i:s');
 
-// login to iys system
-$login = $iys->authentication->loginWithOauth2($email, $password);
-if ($login instanceof \Iys\Auth\Response\Token) {
-    $iys->setToken($login->getAccessToken());
-    $iys->setRefreshToken($login->getRefreshToken());
+        $consentModel = $this->iys->consentManagement->generateConsent($email, Iys\ConsentManagement\Enum\ConsentType::EMAIL, Iys\ConsentManagement\Enum\ConsentSource::WEB, Iys\ConsentManagement\Enum\ConsentStatus::APPROVE, $date, Iys\ConsentManagement\Enum\RecipientType::INDIVIDUAL);
+        $result = $this->iys->consentManagement->createSingleConsent($consentModel);
+        return $result;
+    }
+
+    public function checkPhone(){
+        // create a consent
+        $phoneNumber = '+905415350767';
+        $date = date('Y-m-d H:i:s');
+
+        $consentModel = $this->iys->consentManagement->generateConsent($email, Iys\ConsentManagement\Enum\ConsentType::EMAIL, Iys\ConsentManagement\Enum\ConsentSource::WEB, Iys\ConsentManagement\Enum\ConsentStatus::APPROVE, $date, Iys\ConsentManagement\Enum\RecipientType::INDIVIDUAL);
+        $result = $this->iys->consentManagement->createSingleConsent($consentModel);
+        return $result;
+    }
+
 }
-
-// create a consent
-$phoneNumber = '+905415350767';
-$email = 'presta.tr@gmail.com';
-$date = date('Y-m-d H:i:s');
-$consentModel = $iys->consentManagement->generateConsent($email, Iys\ConsentManagement\Enum\ConsentType::EMAIL, Iys\ConsentManagement\Enum\ConsentSource::WEB, Iys\ConsentManagement\Enum\ConsentStatus::APPROVE, $date, Iys\ConsentManagement\Enum\RecipientType::INDIVIDUAL);
-$result = $iys->consentManagement->createSingleConsent($consentModel);
-
-var_dump($result);
-exit;
-
-/*
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'http://localhost:8080/whmcs-8.1.3/includes/api.php');
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt(
-    $ch,
-    CURLOPT_POSTFIELDS,
-    http_build_query(
-        array(
-            'action' => 'GetProducts',
-            // See https://developers.whmcs.com/api/authentication
-            'username' => 'tJykFvZu9oACPZN9QTCmKMUyoJJIqtJ9',
-            'password' => '9SswPkyukEhQ2thLL0q4j2zKC4XyDokT',
-            'pid' => '1',
-            'responsetype' => 'json',
-        )
-    )
-);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-$response = curl_exec($ch);
-curl_close($ch);
-
-var_dump($response);exit;
-
-
-if( !isset($_GET['key']) or $_GET['key'] != 'cA3pP2dY1mD6sK7l' ){
-    die('--');
-}
-
-require_once 'init.php';
-
-$command = 'GetProducts';
-$postData = array(
-    'gid' => '1',
-);
-$adminUsername = 'presta.tr@gmail.com'; // Optional for WHMCS 7.2 and later
-
-$results = localAPI($command, $postData, $adminUsername);
-
-echo "<pre>";
-print_r($results);
-echo "</pre>";
-*/
